@@ -15,10 +15,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 const cors_1 = __importDefault(require("cors"));
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: ['http://localhost:3000', 'https://ofront.vercel.app/'],
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true
+}));
 const socket_io_1 = require("socket.io");
 const server = app.listen('8000', () => console.log('Server is up, 8000'));
-const io = new socket_io_1.Server(server, { cors: { origin: '*' } });
+const io = new socket_io_1.Server(server, {
+    cors: {
+        origin: ['http://localhost:3000', 'https://ofront.vercel.app/'],
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type'],
+        credentials: true
+    }
+});
 const lib_1 = require("./lib");
 let online = 0;
 let roomArr = [];

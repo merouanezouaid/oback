@@ -4,10 +4,25 @@ import axios from 'axios';
 
 const app = express();
 import cors from 'cors';
-app.use(cors());
+
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://ofront.vercel.app/'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true
+}));
+
 import { Server } from 'socket.io';
 const server = app.listen('8000', () => console.log('Server is up, 8000'));
-const io = new Server(server, { cors: { origin: '*' } });
+
+const io = new Server(server, {
+  cors: {
+    origin: ['http://localhost:3000', 'https://ofront.vercel.app/'],
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true
+  }
+});
 import { handleStart, handleDisconnect, getType } from './lib';
 import { GetTypesResult, room } from './types';
 
