@@ -31,6 +31,9 @@ const io = new socket_io_1.Server(server, {
         credentials: true
     }
 });
+app.get('/', (req, res) => {
+    res.send('Server is up');
+});
 const lib_1 = require("./lib");
 let online = 0;
 let roomArr = [];

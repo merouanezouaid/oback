@@ -23,6 +23,11 @@ const io = new Server(server, {
     credentials: true
   }
 });
+
+app.get('/', (req: Request, res: Response) => {
+  res.send('Server is up');
+});
+
 import { handleStart, handleDisconnect, getType } from './lib';
 import { GetTypesResult, room } from './types';
 
