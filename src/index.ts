@@ -21,13 +21,13 @@ app.use((req, res, next) => {
 });
 
 import { Server } from 'socket.io';
-const port = process.env.PORT || process.env.API_PORT || 3001;
+const port = process.env.PORT  || 3001;
 const server = app.listen(port, () => console.log(`Server is up on port ${port}`));
 
 
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:3000', 'https://ofront.vercel.app/', 'https://bgzxtc2t-5173.uks1.devtunnels.ms'],
+    origin: ['http://localhost:3000', 'https://ofront.vercel.app/', 'https://bgzxtc2t-5173.uks1.devtunnels.ms', `http://${process.env.DROPLET_IP}`],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
     credentials: true
