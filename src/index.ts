@@ -1,6 +1,7 @@
 import express , {Request, Response} from 'express';
 
 import axios from 'axios';
+require("dotenv").config()
 
 const app = express();
 import cors from 'cors';
@@ -12,8 +13,16 @@ app.use(cors({
   credentials: true
 }));
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://ofront.vercel.app/');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 import { Server } from 'socket.io';
-const server = app.listen('8000', () => console.log('Server is up, 8000'));
+const server = app.listen(process.env.API_PORT, () => console.log('Server is up'));
+
 
 const io = new Server(server, {
   cors: {

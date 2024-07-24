@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+require("dotenv").config();
 const app = (0, express_1.default)();
 const cors_1 = __importDefault(require("cors"));
 app.use((0, cors_1.default)({
@@ -21,8 +22,14 @@ app.use((0, cors_1.default)({
     allowedHeaders: ['Content-Type'],
     credentials: true
 }));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://ofront.vercel.app/');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 const socket_io_1 = require("socket.io");
-const server = app.listen('8000', () => console.log('Server is up, 8000'));
+const server = app.listen(process.env.API_PORT, () => console.log('Server is up'));
 const io = new socket_io_1.Server(server, {
     cors: {
         origin: ['http://localhost:3000', 'https://ofront.vercel.app/', 'https://bgzxtc2t-5173.uks1.devtunnels.ms'],
