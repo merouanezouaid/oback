@@ -21,7 +21,8 @@ app.use((req, res, next) => {
 });
 
 import { Server } from 'socket.io';
-const server = app.listen(process.env.API_PORT, () => console.log('Server is up'));
+const port = process.env.PORT || process.env.API_PORT || 3001;
+const server = app.listen(port, () => console.log(`Server is up on port ${port}`));
 
 
 const io = new Server(server, {
