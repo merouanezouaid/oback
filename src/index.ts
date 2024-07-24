@@ -6,7 +6,7 @@ const app = express();
 import cors from 'cors';
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://ofront.vercel.app/'],
+  origin: ['http://localhost:3000', 'https://ofront.vercel.app/', 'https://bgzxtc2t-5173.uks1.devtunnels.ms'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
   credentials: true
@@ -17,7 +17,7 @@ const server = app.listen('8000', () => console.log('Server is up, 8000'));
 
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:3000', 'https://ofront.vercel.app/'],
+    origin: ['http://localhost:3000', 'https://ofront.vercel.app/', 'https://bgzxtc2t-5173.uks1.devtunnels.ms'],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
     credentials: true
